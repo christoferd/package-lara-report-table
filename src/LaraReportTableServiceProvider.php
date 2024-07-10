@@ -4,6 +4,7 @@ namespace Christoferd\LaraReportTable;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+
 // use Christoferd\LaraReportTable\Commands\LaraReportTableCommand;
 
 class LaraReportTableServiceProvider extends PackageServiceProvider
@@ -19,10 +20,10 @@ class LaraReportTableServiceProvider extends PackageServiceProvider
             ->name('package-lara-report-table')
             // ->hasConfigFile()
             ->hasViews();
-            // ->hasCommand(LaraReportTableCommand::class);
+        // ->hasCommand(LaraReportTableCommand::class);
 
         // Chris D. 8-Jul-2024 - Override Spatie automatic stuff coz it didn't work for me :(
         $dir = substr(__DIR__, 0, -4).'\\resources\\views';
-        $this->loadViewsFrom($dir,$this->package->viewNamespace());
+        $this->loadViewsFrom($dir, $this->package->viewNamespace());
     }
 }

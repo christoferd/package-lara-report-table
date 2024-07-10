@@ -2,9 +2,9 @@
 
 namespace Christoferd\LaraReportTable\Tests;
 
+use Christoferd\LaraReportTable\LaraReportTableServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Christoferd\LaraReportTable\LaraReportTableServiceProvider;
 
 class TestCase extends Orchestra
 {

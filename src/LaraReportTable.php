@@ -10,8 +10,6 @@ class LaraReportTable implements Arrayable
     /**
      * Number of data columns expected in $rows
      * Helps addRow() allowing less args to be sent and the function auto fills the rest.
-     *
-     * @var null|int
      */
     public ?int $numberOfColumns = null;
 
@@ -19,120 +17,110 @@ class LaraReportTable implements Arrayable
      * Divs that will appear above the table.
      * Use addReportTitle('My Title')
      * Example: ['My Title', 'Another Title', ...]
-     *
-     * @var array
      */
     public array $reportTitles = [];
 
     /**
      * Titles for the first column of each row. (Optional)
-     *
-     * @var array
      */
     public array $rowTitles = [];
+
     public array $rows = [];
 
     public array $colTitles = [];
 
     public string $replaceBlankOrNullColTitlesWith = '&nbsp;';
+
     public string $replaceBlankOrNullRowTitlesWith = '&nbsp;';
+
     public string $replaceBlankOrNullFooterRowTitlesWith = '&nbsp;';
 
     /**
      * Titles for the first column of each footer row. (Optional)
-     *
-     * @var array
      */
     public array $footerRowTitles = [];
+
     public array $footerRows = [];
 
     public array $cssClasses = [
-        'lr-shell'               => '',
+        'lr-shell' => '',
         // Div that wraps all the titles and the download
-        'lr-header-shell'        => 'flex justify-between items-top gap-6',
+        'lr-header-shell' => 'flex justify-between items-top gap-6',
         // Titles wrapper div - each title is wrapped with this class
-        'lr-header-titles'       => '',
+        'lr-header-titles' => '',
         // Header action buttons wrapper
-        'lr-header-actions'      => 'pt-2',
+        'lr-header-actions' => 'pt-2',
         // There may be more than one title row/div. One string for each title.
         // e.g. Having only one title: ['text-2xl'],
         // e.g. Having two titles: ['text-2xl font-bold', 'text-xl'],
-        'lr-title'               => ['text-2xl font-bold', 'text-xl'],
-        'lr-jump-to-totals'      => 'text-right text-indigo-600',
-        'lr-jump-to-totals-a'    => '',
-        'lr-jump-to-top'         => 'text-right text-indigo-600',
-        'lr-jump-to-top-a'       => '',
-        'lr-table'               => '',
-        'lr-thead-tr'            => '',
-        'lr-thead-td'            => 'px-4 text-right text-gray-800 font-bold',
-        'lr-tr'                  => 'odd:bg-white even:bg-slate-100',
+        'lr-title' => ['text-2xl font-bold', 'text-xl'],
+        'lr-jump-to-totals' => 'text-right text-indigo-600',
+        'lr-jump-to-totals-a' => '',
+        'lr-jump-to-top' => 'text-right text-indigo-600',
+        'lr-jump-to-top-a' => '',
+        'lr-table' => '',
+        'lr-thead-tr' => '',
+        'lr-thead-td' => 'px-4 text-right text-gray-800 font-bold',
+        'lr-tr' => 'odd:bg-white even:bg-slate-100',
         // The row title will NOT inherit the "td" classes because in most cases the style will be different
-        'lr-row-title'           => 'text-gray-800 font-medium pl-4',
-        'lr-td'                  => 'px-4 text-right',
-        'lr-tfoot-tr'            => 'text-right border-t border-gray-300',
-        'lr-tfoot-td'            => 'px-4',
+        'lr-row-title' => 'text-gray-800 font-medium pl-4',
+        'lr-td' => 'px-4 text-right',
+        'lr-tfoot-tr' => 'text-right border-t border-gray-300',
+        'lr-tfoot-td' => 'px-4',
         // The row title will NOT inherit the "td" classes because in most cases the style will be different
-        'lr-tfoot-row-title'     => 'text-left text-gray-800 pl-4',
-        'lr-no-results-message'  => '',
-        'lr-report-totals'       => 'mt-8',
+        'lr-tfoot-row-title' => 'text-left text-gray-800 pl-4',
+        'lr-no-results-message' => '',
+        'lr-report-totals' => 'mt-8',
         'lr-report-totals-title' => 'font-bold text-gray-800',
         'lr-report-totals-table' => '',
-        'lr-report-totals-tr'    => 'odd:bg-white even:bg-slate-100',
-        'lr-report-totals-td'    => 'px-4',
+        'lr-report-totals-tr' => 'odd:bg-white even:bg-slate-100',
+        'lr-report-totals-td' => 'px-4',
         // Column 1
         'lr-report-totals-label' => 'text-left font-medium text-gray-800',
         // Column 2
         'lr-report-totals-value' => 'text-right pl-20',
-        'lr-info'                => 'my-6 px-4 py-3 border rounded',
-        'lr-info-ul'             => '',
-        'lr-info-li'             => '',
+        'lr-info' => 'my-6 px-4 py-3 border rounded',
+        'lr-info-ul' => '',
+        'lr-info-li' => '',
     ];
 
     /**
      * HTML id used for jump links.
-     *
-     * @var string
      */
     public string $topLocationId = 'lrReportTop';
 
     /**
      * HTML id used for jump links.
-     *
-     * @var string
      */
     public string $totalsLocationId = 'lrReportTotals';
 
     /**
      * Arrayable
-     *
-     * @return array
      */
     public function toArray(): array
     {
         return [
             'showLinkJumpToTotals' => $this->showLinkJumpToTotals,
-            'showBackToTopLink'    => $this->showBackToTopLink,
-            'numberOfColumns'      => $this->numberOfColumns,
-            'reportTitles'         => $this->reportTitles,
-            'colTitles'            => $this->colTitles,
-            'rowTitles'            => $this->rowTitles,
-            'footerRowTitles'      => $this->footerRowTitles,
-            'rows'                 => $this->rows,
-            'footerRows'           => $this->footerRows,
-            'noResultsMessage'     => $this->noResultsMessage,
-            'cssClasses'           => $this->cssClasses,
-            'totals'               => $this->totals,
-            'information'          => $this->information,
-            'topLocationId'        => $this->topLocationId,
-            'totalsLocationId'     => $this->totalsLocationId,
-            'menuLinks'            => $this->menuLinks,
+            'showBackToTopLink' => $this->showBackToTopLink,
+            'numberOfColumns' => $this->numberOfColumns,
+            'reportTitles' => $this->reportTitles,
+            'colTitles' => $this->colTitles,
+            'rowTitles' => $this->rowTitles,
+            'footerRowTitles' => $this->footerRowTitles,
+            'rows' => $this->rows,
+            'footerRows' => $this->footerRows,
+            'noResultsMessage' => $this->noResultsMessage,
+            'cssClasses' => $this->cssClasses,
+            'totals' => $this->totals,
+            'information' => $this->information,
+            'topLocationId' => $this->topLocationId,
+            'totalsLocationId' => $this->totalsLocationId,
+            'menuLinks' => $this->menuLinks,
         ];
     }
 
     /**
      * Message to be displayed when there are no results.
-     *
-     * @var string|null
      */
     public ?string $noResultsMessage = null;
 
@@ -151,8 +139,6 @@ class LaraReportTable implements Arrayable
      *      ],
      *      ...
      *    ]
-     *
-     * @var array
      */
     public array $totals = [];
 
@@ -164,6 +150,7 @@ class LaraReportTable implements Arrayable
     public array $information = [];
 
     public bool $showLinkJumpToTotals = true;
+
     public bool $showBackToTopLink = true;
 
     /**
@@ -172,8 +159,6 @@ class LaraReportTable implements Arrayable
      * Example:
      * [ ['label'=>'CSV', 'url'=>'/report-download/my-cash-report', 'cssClasses'=>'px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 '],
      *   [...] ]
-     *
-     * @var array
      */
     public array $menuLinks = [];
 
@@ -223,25 +208,24 @@ class LaraReportTable implements Arrayable
      * Add $row of information to the $rows
      * Uses: $this->numberOfColumns to automatically fill missing columns of data with nulls.
      *
-     * @param mixed ...$args Supports any number of arguments and will add to a new row, automatically filling in the extra spaces with null!
+     * @param  mixed  ...$args  Supports any number of arguments and will add to a new row, automatically filling in the extra spaces with null!
+     *
      * @throws Exception
      */
     public function addRow(...$args): void
     {
-        if(isset($args[0]) && is_array($args[0])) {
+        if (isset($args[0]) && is_array($args[0])) {
             $arr = $args[0];
-        }
-        else {
+        } else {
             $arr = $args;
         }
         // check col count
-        if(!empty($this->numberOfColumns)) {
-            if(count($arr) > $this->numberOfColumns) {
+        if (! empty($this->numberOfColumns)) {
+            if (count($arr) > $this->numberOfColumns) {
                 throw new \Exception('Adding row with too many columns. numberOfColumns = '.$this->numberOfColumns);
-            }
-            elseif(count($arr) < $this->numberOfColumns) {
+            } elseif (count($arr) < $this->numberOfColumns) {
                 // fill with null values
-                for($i = count($arr), $iend = $this->numberOfColumns; $i < $iend; $i++) {
+                for ($i = count($arr), $iend = $this->numberOfColumns; $i < $iend; $i++) {
                     $arr[$i] = null;
                 }
             }
@@ -252,17 +236,16 @@ class LaraReportTable implements Arrayable
     /**
      * Add a blank row to the $rows
      *
-     * @return void
      * @throws \Exception
      */
     public function addBlankRow(): void
     {
         $this->addRowTitle('');
-        if(empty($this->numberOfColumns)) {
+        if (empty($this->numberOfColumns)) {
             throw new \Exception('$numberOfColumns is required to use '.__FUNCTION__);
         }
         $arr = [];
-        for($i = 0; $i < $this->numberOfColumns; $i++) {
+        for ($i = 0; $i < $this->numberOfColumns; $i++) {
             $arr[] = null;
         }
         $this->addRow($arr);
@@ -271,16 +254,15 @@ class LaraReportTable implements Arrayable
     /**
      * Add a title to the $rowTitles class array
      *
-     * @param ?string $title     Blank string or null will be replaced
-     * @param string  $spanClass HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
+     * @param  ?string  $title  Blank string or null will be replaced
+     * @param  string  $spanClass  HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
      */
     public function addRowTitle(?string $title, string $spanClass = ''): void
     {
-        if($title === '' || $title === null) {
+        if ($title === '' || $title === null) {
             $this->rowTitles[] = $this->replaceBlankOrNullRowTitlesWith;
-        }
-        else {
-            if($spanClass) {
+        } else {
+            if ($spanClass) {
                 $title = $this->spanCssWrap($title, $spanClass);
             }
             $this->rowTitles[] = $title;
@@ -290,25 +272,21 @@ class LaraReportTable implements Arrayable
     /**
      * Add a title to the $footerRowTitles class array
      *
-     * @param ?string $title     Blank string or null will be replaced
-     * @param string  $spanClass HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
+     * @param  ?string  $title  Blank string or null will be replaced
+     * @param  string  $spanClass  HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
      */
     public function addFooterRowTitle(?string $title, string $spanClass = ''): void
     {
-        if($title === '' || $title === null) {
+        if ($title === '' || $title === null) {
             $this->footerRowTitles[] = $this->replaceBlankOrNullFooterRowTitlesWith;
-        }
-        else {
-            if($spanClass) {
+        } else {
+            if ($spanClass) {
                 $title = $this->spanCssWrap($title, $spanClass);
             }
             $this->footerRowTitles[] = $title;
         }
     }
 
-    /**
-     * @return array
-     */
     public function getFooterRowTitles(): array
     {
         return $this->footerRowTitles;
@@ -318,15 +296,14 @@ class LaraReportTable implements Arrayable
      * Add a title to the $colTitles class array
      * Note: this will automatically set the $numberOfColumns to the amount of values in this $colTitles array.
      *
-     * @param ?string $title     Blank string or null will be replaced
-     * @param string  $spanClass HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
+     * @param  ?string  $title  Blank string or null will be replaced
+     * @param  string  $spanClass  HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
      */
     public function addColTitle(?string $title, string $spanClass = ''): void
     {
-        if($title === '' || $title === null) {
+        if ($title === '' || $title === null) {
             $this->colTitles[] = $this->replaceBlankOrNullColTitlesWith;
-        }
-        else {
+        } else {
             $this->colTitles[] = $this->spanCssWrap($title, $spanClass);
         }
 
@@ -336,7 +313,7 @@ class LaraReportTable implements Arrayable
     public function setColTitles(array $titles, string $spanClass = ''): void
     {
         $this->colTitles = [];
-        foreach($titles as $title) {
+        foreach ($titles as $title) {
             $this->addColTitle($title, $spanClass);
         }
     }
@@ -354,7 +331,6 @@ class LaraReportTable implements Arrayable
     /**
      * Build report table.
      *
-     * @return string
      * @throws \Throwable
      */
     public function renderHtml(): string
@@ -376,8 +352,8 @@ class LaraReportTable implements Arrayable
     /**
      * Add a section of totals data.
      *
-     * @param string $sectionTitle Title to appear above the totals data
-     * @param array  $totalsData   [ [key, value], [key, value], ... ]
+     * @param  string  $sectionTitle  Title to appear above the totals data
+     * @param  array  $totalsData  [ [key, value], [key, value], ... ]
      * @return void
      */
     public function addTotals(string $sectionTitle, array $totalsData)
@@ -404,13 +380,12 @@ class LaraReportTable implements Arrayable
      * Wrap $title with <span class="...">
      *     ! NOTE ! Only if $spanClass is not a blank string
      *
-     * @param string|mixed $title Something that can be converted to a string!
-     * @param string       $spanClass
+     * @param  string|mixed  $title  Something that can be converted to a string!
      * @return string Will just return $title when $spanClass is an empty string.
      */
     protected function spanCssWrap(mixed $title, string $spanClass = ''): string
     {
-        if($spanClass === '') {
+        if ($spanClass === '') {
             return $title;
         }
 
@@ -420,8 +395,7 @@ class LaraReportTable implements Arrayable
     /**
      * Add a message to $information
      *
-     * @param string $info
-     * @param string $spanClass HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
+     * @param  string  $spanClass  HTML Class to place inside <span> tags. Otherwise will just be the value without <span>
      */
     public function addInformation(string $info, string $spanClass = ''): void
     {
@@ -435,7 +409,7 @@ class LaraReportTable implements Arrayable
 
     public function setCssClass(string $existingCssClassesKey, string $newCssClasses)
     {
-        if(!isset($this->cssClasses[$existingCssClassesKey])) {
+        if (! isset($this->cssClasses[$existingCssClassesKey])) {
             throw new \Exception(\class_basename(__CLASS__).' cssClasses Key does not exist: '.$existingCssClassesKey);
         }
         $this->cssClasses[$existingCssClassesKey] = $newCssClasses;
@@ -449,7 +423,7 @@ class LaraReportTable implements Arrayable
     /**
      * Generates an array used for building a download file.
      *
-     * @param bool $stripTags Strip HTML tags on all titles, values, etc.
+     * @param  bool  $stripTags  Strip HTML tags on all titles, values, etc.
      * @return array Array of Arrays
      */
     public function generateDownloadData(bool $stripTags = true): array
@@ -457,7 +431,7 @@ class LaraReportTable implements Arrayable
         $d = [];
 
         // Report Titles
-        foreach($this->reportTitles as $title) {
+        foreach ($this->reportTitles as $title) {
             $d[] = [$title];
         }
 
@@ -466,17 +440,17 @@ class LaraReportTable implements Arrayable
         // -- Column Titles
         $t = $this->colTitles;
         // ? add blank first cell before col titles?
-        if(!empty($this->rowTitles)) {
+        if (! empty($this->rowTitles)) {
             \array_unshift($t, '');
         }
         $d[] = $t;
 
         // - Table Body
         // -- Data Rows
-        foreach($this->rows as $i => $row) {
+        foreach ($this->rows as $i => $row) {
             $r = $row;
             // ? add title in first cell?
-            if(!empty($this->rowTitles)) {
+            if (! empty($this->rowTitles)) {
                 \array_unshift($r, ($this->rowTitles[$i] ?? ''));
             }
             // add to data
@@ -484,10 +458,10 @@ class LaraReportTable implements Arrayable
         }
 
         // - Table Footer
-        foreach($this->footerRows as $i => $row) {
+        foreach ($this->footerRows as $i => $row) {
             $r = $row;
             // ? add title in first cell?
-            if(!empty($this->footerRowTitles)) {
+            if (! empty($this->footerRowTitles)) {
                 \array_unshift($r, ($this->footerRowTitles[$i] ?? ''));
             }
             // add to data
@@ -498,9 +472,9 @@ class LaraReportTable implements Arrayable
         $d[] = [''];
 
         // - Report Totals
-        foreach($this->totals as $sectionTitle => $rowsArr) {
+        foreach ($this->totals as $sectionTitle => $rowsArr) {
             $d[] = [$sectionTitle];
-            foreach($rowsArr as $label => $value) {
+            foreach ($rowsArr as $label => $value) {
                 $d[] = [$label, $value];
             }
         }
@@ -509,16 +483,16 @@ class LaraReportTable implements Arrayable
         $d[] = [''];
 
         // - Report Information Messages
-        foreach($this->information as $message) {
+        foreach ($this->information as $message) {
             // add to data
             $d[] = [$message];
         }
 
         // ? Strip HTML Tags ?
-        if($stripTags) {
-            foreach($d as &$dArr) {
-                foreach($dArr as &$val) {
-                    if(is_string($val)) {
+        if ($stripTags) {
+            foreach ($d as &$dArr) {
+                foreach ($dArr as &$val) {
+                    if (is_string($val)) {
                         $val = strip_tags($val);
                     }
                 }

@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 class LaraReportTableCommand extends Command
 {
-    public $signature = 'lara-report-table';
+    public $signature = 'package-lara-report-table';
 
     public $description = 'Nothing to see here';
 

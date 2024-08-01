@@ -9,7 +9,7 @@
             </div>
         @endif
         <div class="{!! $cssClasses['lr-header-actions']??'' !!}">
-            @include('package-lara-report-table::partial.report_download_menu')
+            @include('package-lara-report-table::partial.report_menu')
         </div>
     </div>
 

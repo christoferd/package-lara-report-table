@@ -76,11 +76,8 @@ $reportHtml = $r->renderHtml();
 return view('report-view', compact('reportHtml'));
 ```
 
-## Testing
-
-```bash
-composer test
-```
+#### Expected Output
+![screenshot](screenshot.png)
 
 ## Changelog
 

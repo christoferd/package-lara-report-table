@@ -209,6 +209,8 @@ class LaraReportTable implements Arrayable
      * Uses: $this->numberOfColumns to automatically fill missing columns of data with nulls.
      *
      * @param  mixed  ...$args  Supports any number of arguments and will add to a new row, automatically filling in the extra spaces with null!
+     *                          Supports array. When an array is given, or when an array is the first argument,
+     *                          it will add a row using values from the array. (29-Aug-2024)
      *
      * @throws Exception
      */

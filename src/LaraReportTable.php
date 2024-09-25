@@ -71,7 +71,7 @@ class LaraReportTable implements Arrayable
         'lr-tfoot-row-title' => 'text-left text-gray-800 pl-4',
         'lr-no-results-message' => '',
         'lr-report-totals' => 'mt-8',
-        'lr-report-totals-title' => 'font-bold text-gray-800 pl-4',
+        'lr-report-totals-title' => 'font-bold text-gray-800 pl-4', // pl-4 to match the row title
         'lr-report-totals-table' => '',
         'lr-report-totals-tr' => 'odd:bg-white even:bg-slate-100',
         'lr-report-totals-td' => 'px-4',

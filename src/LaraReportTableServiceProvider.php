@@ -23,7 +23,7 @@ class LaraReportTableServiceProvider extends PackageServiceProvider
         // ->hasCommand(LaraReportTableCommand::class);
 
         // Chris D. 8-Jul-2024 - Override Spatie automatic stuff coz it didn't work for me :(
-        $dir = substr(__DIR__, 0, -4).'\\resources\\views';
+        $dir = \base_path('/resources/views');
         $this->loadViewsFrom($dir, $this->package->viewNamespace());
     }
 }
